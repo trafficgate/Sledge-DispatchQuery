@@ -6,6 +6,9 @@ package Sledge::DispatchQuery;
 #
 
 use strict;
+use vars qw($VERSION);
+$VERSION = 0.01;
+
 use base qw(Exporter);
 @Sledge::DispatchQuery::EXPORT = qw(dispatch_query);
 

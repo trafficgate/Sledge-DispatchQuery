@@ -1,5 +1,8 @@
 Revision history for Perl extension Sledge::DispatchQuery
 
+0.03  Thu Sep 16 16:22:24 2004
+	- トリガーキーが FillInされないようにしました。(KIMURA, takefumi)
+
 0.02
 	- Added POD document
 

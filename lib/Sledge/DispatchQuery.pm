@@ -7,7 +7,7 @@ package Sledge::DispatchQuery;
 
 use strict;
 use vars qw($VERSION);
-$VERSION = 0.01;
+$VERSION = 0.03;
 
 use base qw(Exporter);
 @Sledge::DispatchQuery::EXPORT = qw(dispatch_query);
@@ -16,6 +16,16 @@ $Sledge::DispatchQuery::DefaultKey = ".command";
 
 sub dispatch_query {
     my($class, $key) = @_;
+
+    $class->register_hook(
+	AFTER_DISPATCH => sub {
+	    my $self = shift;
+	    if ($self->fillin_form) {
+		$self->fillin_form->ignore_fields($key)
+	    }
+	}
+    );
+
     $key ||= $Sledge::DispatchQuery::DefaultKey;
     my $sledge = $class->new();
     my $page = $sledge->r->param($key) || "index";
